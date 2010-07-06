@@ -1,0 +1,69 @@
+{% extends "seats/base.html" %}
+{% block content %}
+<div class="content exam">
+<h2>考试: {{ exam.name }}</h2>
+
+<div>
+  <h3>考试时间</h3>
+  <p>{{ exam.starttime }} - {{ exam.endtime }}</p>
+</div>
+
+<div>
+  <h3>考卷</h3>
+  <ul>
+    {% for paper in papers %}
+    <li>{{ paper.name }} (<span class="paper-identifier">{{ paper.identifier }}</span>)</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div>
+  <h3>考生</h3>
+  <div class="actions">
+    {% if not exam.students_count %}
+    <a href="{% url randseats.seats.views.exam_import_students exam.id %}">导入考生数据</a>
+    {% else %}
+      <a href="{% url randseats.seats.views.exam_clear_students exam.id %}">清除考生数据</a>
+    {% endif %}
+  </div>
+  <p>共 {{ exam.students_count }} 人</p>
+</div>
+
+<div>
+  <h3>考场</h3>
+  <div class="actions">
+    <a href="/exam_shuffle_students/{{ exam.id }}">考生排座位</a>
+  </div>
+  <table class="room-usage">
+    <thead>
+    <tr>
+        <th>房间</th>
+        <th>可用座位数</th>
+        <th>实际人数</th>
+        <th>空余座位</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for usage in roomusage %}
+    <tr>
+        <td>{{ usage.room }}</td>
+        <td><a href="/room/{{ usage.room.id }}/">{{ usage.room.useable_seats_count }}</a></td>
+        <td><a href="/exam_show_room_students/{{ exam.id }}/{{ usage.room.id }}/">{{ usage.students_count }}</a></td>
+        <td>
+            {{ usage.empty_seats_count }}
+            /
+            {{ usage.empty_seats_percent }}%
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div>
+<h3>报表</h3>
+<p> <a href="/exam_export/{{ exam.id }}">报表</a> </p>
+</div>
+
+</div>
+{% endblock %}

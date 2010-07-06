@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="zh-cn">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+    body {
+        margin: 10px auto;
+        width: 60em;
+    }
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    div.column-left {
+        float: left;
+        clear: none;
+        width: 12em;
+    }
+    div.menu {
+        border: 1px solid #EEEEEE;
+        margin-bottom: 0.5em;
+    }
+    div.messages {
+        border: 1px solid #EEEEEE;
+        margin-bottom: 0.5em;
+    }
+    ul.messages {
+        margin: 0.1em 0;
+        font-style: italic;
+    }
+   div.content {
+        border: 1px solid #EEEEEE;
+        margin-left: 13em;
+        padding: 0.5em;
+    }
+    .footer {
+        text-align: center;
+    }
+    div.exam > div {
+        position: relative;
+    }
+    div.exam .actions {
+        position: absolute;
+        display: inline;
+        top: 0.2em;
+        left: 4em;
+    }
+    table {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    table td {
+        border: 1px solid black;
+        padding: 5px;
+    }
+    table.room {
+        border: 1px double black;
+        border-collapse: separate;
+    }
+    table.room td {
+        border: 1px dotted black;
+        width: 3.5em;
+        height: 3em;
+        text-align: right;
+        font-size: 0.8em;
+        vertical-align: top;
+    }
+    table.room td .num {
+        float: left;
+        font-family: sans-serif;
+        font-size: 0.8em;
+        background-color: #eeeeee;
+    }
+    table.room td.empty {
+        background-color: green;
+    }
+    table.room td.not-useable {
+        background-color: red;
+    }
+    table.room td.no-seat {
+        border: none;
+    }
+    table.room-usage td {
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div class="header">
+      <h1>考场座位分配系统</h1>
+    </div>
+
+    <div class="column-left">
+      {% block menu %}
+      <div class="menu">
+      <ul>
+        <li><a href="{% url randseats.seats.views.list_exams %}">考试座位管理</a></li>
+        <li><a href="{% url randseats.seats.views.list_rooms %}">考场管理</a></li>
+      </ul>
+      </div>
+      {% endblock %}
+
+      {% if messages %}
+      <div class="messages">
+        <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+
+    {% block content %}
+    <div class="content">
+    欢迎使用
+    </div>
+    {% endblock %}
+
+    <div class="footer">
+      <hr/>
+      Copyleft 2009-2010
+    </div>
+</body>
+</html>

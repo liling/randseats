@@ -1,0 +1,17 @@
+{% extends "seats/base.html" %}
+
+{% block title %}考场详情{% endblock %}
+
+{% block content %}
+<div class="content">
+<h2>考场：{{ room.name }}</h2>
+<p>座位总数 {{ room.total_seats_count }}，可用座位 {{ room.useable_seats_count }}。</p>
+<table class="room" cellspacing="5">
+    {{ seats|safe }}
+</table>
+{% if roomadmin %}
+<a href="/room_add_seats/{{ room.id }}">添加座位</a>
+<a href="/room_clear_seats/{{ room.id }}">清空座位</a>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% for page in pages %}"{{ data.report_title }} {{ page.first.idnumber }}-{{ page.last.idnumber }}"
+学号,姓名,班级,座位,学号,姓名,班级,座位
+{% for row in page.column1 %}{{ row.idnumber }},{{ row.name }},{{ row.classnum }},{{ row.room.nick }}-{{row.seat }} 
+{% endfor %}
+{% if page.column2 %}
+    <table class="column2">
+      <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>班级</th>
+        <th>座位</th>
+      </tr>
+      {% for row in page.column2 %}
+      <tr>
+        <td>{{ row.idnumber }}</td>
+        <td class="name">{{ row.name }}</td>
+        <td>{{ row.classnum }}</td>
+        <td class="seatnum">{{ row.room.nick }}-{{row.seat }}</td> 
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+    </td></tr></table>
+  </div>
+  <div class="page-break"></div>
+{% endfor %}

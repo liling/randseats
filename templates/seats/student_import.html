@@ -1,0 +1,12 @@
+{% extends 'seats/base.html' %}
+{% block content %}
+<div class="content">
+<h2>导入考生数据</h2>
+<p>请将考生信息保存位 CSV 格式的文件，每行需包含学号、姓名、班级三个字段。该文件需使用UTF-8编码。</p>
+<form method="POST" enctype="multipart/form-data">
+{{ form.as_p }}
+<input type="submit" name="submit" value="提交" />
+<input type="submit" name="cancel" value="取消" />
+</form>
+</div>
+{% endblock %}

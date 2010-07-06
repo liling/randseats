@@ -1,0 +1,11 @@
+{% extends 'seats/base.html' %}
+{% block content %}
+<div class="content confirm">
+<h2>清空考试学生数据</h2>
+<form action="{% url randseats.seats.views.exam_clear_students exam.id %}" method="get">
+<p>您确定要清空“{{ exam.name }}”考试的学生数据吗？</p>
+    <input type="submit" name="confirmed" value="确定"/>
+    <input type="submit" name="canceled" value="取消"/>
+</form>
+</div>
+{% endblock %}

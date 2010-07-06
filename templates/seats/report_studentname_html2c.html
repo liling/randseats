@@ -1,0 +1,53 @@
+{% extends "seats/report_generic.html" %}
+
+{% block title %}{{ data.exam.name }}{% endblock %}
+
+{% block body %}
+<body class="roomseat">
+{% for page in pages %}
+  <div class="page">
+    <h1>{{ data.report_title }} {{ data.room }}</h1>
+    <table><tr><td>
+    <table class="column1">
+      <tr>
+        <th>座位</th>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>签到</th>
+      </tr>
+      {% for row in page.column1 %}
+      <tr>
+        <td class="seatnum">{{ row.room.nick }}-{{row.seat }}</td> 
+        <td>{{ row.idnumber }}</td>
+        <td class="name">{{ row.name }}</td>
+        <td class="sign">&nbsp;</td>
+      </tr>
+      {% endfor %}
+    </table>
+    </td>
+    <td width="2em"></td>
+    <td valign="top">
+    {% if page.column2 %}
+    <table class="column2">
+      <tr>
+        <th>座位</th>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>签到</th>
+      </tr>
+      {% for row in page.column2 %}
+      <tr>
+        <td class="seatnum">{{ row.room.nick }}-{{row.seat }}</td> 
+        <td>{{ row.idnumber }}</td>
+        <td class="name">{{ row.name }}</td>
+        <td class="sign">&nbsp;</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+    </td></tr></table>
+  </div>
+  <div class="page-break"></div>
+{% endfor %}
+</body>
+{% endblock %}

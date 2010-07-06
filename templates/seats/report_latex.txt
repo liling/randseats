@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{CJKutf8}
+\setlength{\voffset}{-1in}
+\setlength{\hoffset}{-1in}
+\addtolength{\textheight}{2in}
+\addtolength{\textwidth}{2in}
+
+\usepackage{array}
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
+\begin{CJK}{UTF8}{gkai}
+\CJKtilde
+\title{ {% block title %}报表{% endblock %} }
+\begin{document}
+{% block body %}{% endblock %}
+\end{CJK}
+\end{document}

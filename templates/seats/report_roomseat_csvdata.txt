@@ -1,0 +1,3 @@
+idnumber,name,classnum,seatnum
+{% for row in data.students %}{{ row.idnumber }},{{ row.name }},{{ row.classnum }},{{ row.room.nick}}-{{ row.seat }}
+{% endfor %}

@@ -1,0 +1,23 @@
+{% extends "seats/report_latex.txt" %}
+
+{% block title %}{{ data.report_title }}{% endblock %}
+
+{% block body %}
+{% for page in pages %}
+\clearpage
+\centering
+{\Huge {{ data.report_title }} {{ page.first.idnumber }}-{{ page.last.idnumber }}}
+\vspace*{18pt}
+
+\linespread{1.6}
+\large
+\begin{tabular}{|p{48pt}|p{56pt}|p{48pt}|p{32pt}||p{48pt}|p{56pt}|p{48pt}|p{32pt}|}
+\hline
+学号 & 姓名 & 班级 & 座位 & 学号 & 姓名 & 班级 & 座位 \\
+{% for row in page.rows %}\hline
+{\large {{ row.0.idnumber }} } & {\large {{ row.0.name }} } & {\large {{ row.0.classnum }} } & {\large {{ row.0.room.nick }}-{{ row.0.seat }} } & {\large {{ row.1.idnumber }} } & {\large {{ row.1.name }} } & {\large {{ row.1.classnum }} } & {\large {{ row.1.room.nick }}-{{ row.1.seat }} } \\
+{% endfor %}
+\hline
+\end{tabular}
+{% endfor %}
+{% endblock %}

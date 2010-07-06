@@ -1,0 +1,41 @@
+{% extends "seats/base.html" %}
+
+{% block content %}
+<div class="content">
+{% if future_exams %}
+<h3>未开始的考试</h3>
+<table>
+    <tr>
+        <th>考试</th>
+        <th>开始时间</th>
+        <th>结束时间</th>
+    </tr>
+    {% for exam in future_exams %}
+    <tr>
+        <td><a href="{% url randseats.seats.views.show_exam exam.id %}">{{ exam.name }}</a></td>
+        <td>{{ exam.starttime }}</td>
+        <td>{{ exam.endtime }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% if finished_exams %}
+<h3>已完成的考试</h3>
+<table>
+    <tr>
+        <th>考试</th>
+        <th>开始时间</th>
+        <th>结束时间</th>
+    </tr>
+    {% for exam in finished_exams %}
+    <tr>
+        <td><a href="{% url randseats.seats.views.show_exam exam.id %}">{{ exam.name }}</a></td>
+        <td>{{ exam.starttime }}</td>
+        <td>{{ exam.endtime }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+.roomseat h1 {
+    text-align: center;
+}
+.roomseat table.column1, .roomseat table.column2 {
+    font-size: 12pt;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.roomseat table.column1 td, .roomseat table.column2 td,
+.roomseat table.column1 th, .roomseat table.column2 th {
+    border: 1px solid black;
+    padding: 5px 3px;
+    text-align: center;
+}
+.roomseat td.name {
+    width: 5em;
+}
+.roomseat td.sign {
+    width: 5em;
+}
+@media print {
+    .page-break { page-break-before: always; }
+}
