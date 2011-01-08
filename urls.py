@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     (r'^exam_import_students/(?P<exam_id>\d+)/$', 'randseats.seats.views.exam_import_students'),
     (r'^exam_clear_students/(?P<exam_id>\d+)/$', 'randseats.seats.views.exam_clear_students'),
     (r'^exam_shuffle_students/(?P<exam_id>\d+)/$', 'randseats.seats.views.exam_shuffle_students'),
+    (r'^exam_export_students_for_moodle/(?P<exam_id>\d+)/$', 'randseats.seats.views.exam_export_sutdents_for_moodle'),
     (r'^exam_show_room_students/(?P<exam_id>\d+)/(?P<room_id>\d+)/$', 'randseats.seats.views.exam_show_room_students'),
     (r'^exam_export/(?P<exam_id>\d+)/$', 'randseats.seats.views.exam_export'),
 

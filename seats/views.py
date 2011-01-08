@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, redirect
 from django import forms
 from django.contrib import messages
+import csv
 
 import os, string, tempfile, datetime
 from randseats.seats.models import *
@@ -86,6 +87,20 @@ def show_exam(request, exam_id):
         'seats/exam.html',
         {'exam':exam, 'papers': papers, 'roomusage':roomusage},
         context_instance=RequestContext(request))
+
+def exam_export_sutdents_for_moodle(request, exam_id):
+    exam = Exam.objects.get(pk=exam_id)
+    students = Student.objects.filter(exam = exam)
+
+    response = HttpResponse(mimetype = 'text/csv')
+    response['Content-Disposition'] = 'attachment; filename=students_for_moodle.csv'
+
+    writer = csv.writer(response)
+    writer.writerow(['username', 'password', 'email', 'firstname', 'lastname', 'idnumber', 'department', 'course1'])
+    for s in students:
+        writer.writerow([s.idnumber, '123456', s.idnumber + '@no.email', s.name.encode('utf8'), s.name.encode('utf8'), s.idnumber, s.classnum, s.paper.name])
+
+    return response
 
 def exam_import_students(request, exam_id):
 
