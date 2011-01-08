@@ -2,7 +2,7 @@
     text-align: center;
 }
 .roomseat table.column1, .roomseat table.column2 {
-    font-size: 12pt;
+    font-size: 11pt;
     border: 1px solid black;
     border-collapse: collapse;
 }
@@ -12,8 +12,17 @@
     padding: 5px 3px;
     text-align: center;
 }
+.roomseat td.num {
+    width: 6em;
+}
 .roomseat td.name {
     width: 5em;
+}
+.roomseat td.num {
+    width: 5em;
+}
+.roomseat td.seatnum {
+    width: 3em;
 }
 .roomseat td.sign {
     width: 5em;

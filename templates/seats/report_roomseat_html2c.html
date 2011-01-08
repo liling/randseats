@@ -17,9 +17,9 @@
       </tr>
       {% for row in page.column1 %}
       <tr>
-        <td>{{ row.idnumber }}</td>
+        <td class="num">{{ row.idnumber }}</td>
         <td class="name">{{ row.name }}</td>
-        <td>{{ row.classnum }}</td>
+        <td class="classnum">{{ row.classnum }}</td>
         <td class="seatnum">{{ row.room.nick }}-{{row.seat }}</td> 
       </tr>
       {% endfor %}
