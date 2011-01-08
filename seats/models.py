@@ -5,6 +5,7 @@ class Exam(models.Model):
     class Meta:
         verbose_name = '考试'
         verbose_name_plural = '考试'
+        ordering = ['-starttime']
 
     name = models.CharField('名称', max_length = 60)
     starttime = models.DateTimeField('开始时间')
@@ -245,7 +246,7 @@ class Student(models.Model):
         verbose_name_plural = '考生'
     
     exam = models.ForeignKey(Exam)
-    idnumber = models.CharField(max_length = 20)
+    idnumber = models.CharField('学号', max_length = 20)
     name = models.CharField('姓名', max_length = 39)
     classnum = models.CharField('班级', max_length = 20)
     room = models.ForeignKey(Room, null = True)
